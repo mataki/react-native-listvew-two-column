@@ -7,6 +7,8 @@ import {
   Image,
   ListView,
   Dimensions,
+  Linking,
+  TouchableOpacity,
 } from 'react-native';
 
 class App extends React.Component {
@@ -37,15 +39,19 @@ class App extends React.Component {
   }
 
   renderRow(data) {
-    const image = data.images[0]
+    const image = data.images[0];
+    const url = data.external_urls.spotify;
     return (
-      <View style={{ backgroundColor: 'white', margin: 5, width: this.itemWidth, height: 200, borderRadius: 2, overflow: 'hidden' }}>
+      <TouchableOpacity
+        onPress={() => Linking.openURL(url)}
+        style={{ backgroundColor: 'white', margin: 5, width: this.itemWidth, height: 200, borderRadius: 2, overflow: 'hidden' }}
+        >
         <Image source={{ uri: image.url }} style={{ flex: 1, height: 50 }}/>
         <View style={{ padding: 10 }}>
           <Text style={{ fontSize: 14, fontWeight: '600', marginBottom: 5 }}>{data.name}</Text>
           <Text style={{ fontSize: 11, color: '#555555'}}>{data.genres.slice(0, 3).join(', ')}</Text>
         </View>
-      </View>
+      </TouchableOpacity>
     )
   }
 
