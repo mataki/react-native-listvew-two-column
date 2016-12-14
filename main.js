@@ -4,6 +4,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Image,
   ListView,
   Dimensions,
 } from 'react-native';
@@ -36,10 +37,14 @@ class App extends React.Component {
   }
 
   renderRow(data) {
-    console.log(data)
+    const image = data.images[0]
     return (
-      <View style={{ padding: 10, backgroundColor: 'white', margin: 5, width: this.itemWidth, height: 100 }}>
-        <Text>{data.name}</Text>
+      <View style={{ backgroundColor: 'white', margin: 5, width: this.itemWidth, height: 200, borderRadius: 2, overflow: 'hidden' }}>
+        <Image source={{ uri: image.url }} style={{ flex: 1, height: 50 }}/>
+        <View style={{ padding: 10 }}>
+          <Text style={{ fontSize: 14, fontWeight: '600', marginBottom: 5 }}>{data.name}</Text>
+          <Text style={{ fontSize: 11, color: '#555555'}}>{data.genres.slice(0, 3).join(', ')}</Text>
+        </View>
       </View>
     )
   }
