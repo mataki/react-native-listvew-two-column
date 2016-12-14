@@ -34,7 +34,7 @@ class App extends React.Component {
   renderRow(data) {
     console.log(data)
     return (
-      <View style={{ padding: 10, backgroundColor: 'white', margin: 5 }}>
+      <View style={{ padding: 10, backgroundColor: 'white', margin: 5, width: 100, height: 100 }}>
         <Text>{data.name}</Text>
       </View>
     )
@@ -51,6 +51,7 @@ class App extends React.Component {
     return (
       <ListView
         style={{ flex: 1, paddingTop: 20, backgroundColor: '#dddddd' }}
+        contentContainerStyle={{ flexDirection: 'row', flexWrap: 'wrap' }}
         dataSource={this.state.dataSource}
         renderRow={this.renderRow}
         />
