@@ -5,6 +5,7 @@ import {
   Text,
   View,
   ListView,
+  Dimensions,
 } from 'react-native';
 
 class App extends React.Component {
@@ -17,6 +18,9 @@ class App extends React.Component {
       isLoading: true,
       dataSource: ds.cloneWithRows([1, 2]),
     };
+
+    this.itemWidth = (Dimensions.get('window').width - 20) / 2;
+    this.renderRow = this.renderRow.bind(this)
   }
 
   componentWillMount() {
@@ -34,7 +38,7 @@ class App extends React.Component {
   renderRow(data) {
     console.log(data)
     return (
-      <View style={{ padding: 10, backgroundColor: 'white', margin: 5, width: 100, height: 100 }}>
+      <View style={{ padding: 10, backgroundColor: 'white', margin: 5, width: this.itemWidth, height: 100 }}>
         <Text>{data.name}</Text>
       </View>
     )
